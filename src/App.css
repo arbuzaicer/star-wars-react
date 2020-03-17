@@ -8,5 +8,20 @@ body {
     background: url("./images/body-bg.jpg") no-repeat;
     background-size: cover;
     display: flex;
-    min-height: 100vh;
+    height: 100%;
+    overflow: scroll;
+}
+
+/*Custom styles for slick-slider*/
+
+.slick-list {
+    width: 350px;
+}
+.slick-slider {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+.slick-next, .slick-prev {
+    transform: scale(2);
 }
