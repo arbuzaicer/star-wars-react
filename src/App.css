@@ -25,3 +25,9 @@ body {
 .slick-next, .slick-prev {
     transform: scale(2);
 }
+.developed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+}

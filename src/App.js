@@ -14,6 +14,7 @@ function App() {
             <Route exact path="/" component={Home}/>
             <Route exact path="/films/" component={Films}/>
             <Route exact path="/planets/" component={Planets}/>
+            <div className='developed'>Developed by Pashynov M.</div>
         </>
     );
 }

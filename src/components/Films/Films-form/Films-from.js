@@ -11,13 +11,11 @@ const FilmForm = (props) => {
                                max={11}/>
                         <label>Номер епізоду (1-11)</label>
                     </div>
-
-                    <button className={styles.submit} onClick={() => {
-                        props.getCharacters(document.getElementById('someID').value);
-                    }}>Отримати інформацію
-                    </button>
-
                 </div>
+                <button className={styles.submit} onClick={() => {
+                    props.getCharacters(document.getElementById('someID').value);
+                }}>Отримати інформацію
+                </button>
             </div>
         )
 
