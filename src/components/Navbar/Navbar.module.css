@@ -1,0 +1,31 @@
+.navigation {
+    color: white;
+    font-size: 4em;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.33);
+}
+.header-logo__image {
+    width: 6em;
+    height: 2.5em;
+}
+
+.navbar-list {
+    margin-left: 2em;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    min-width: 50vw;
+}
+
+.navbar-list>a {
+    text-decoration: none;
+    color: white;
+    text-shadow: 9px 4px 8px rgb(94, 160, 207);
+    transition: 0.5s;
+}
+
+.navbar-list>a:hover {
+    color: darkgoldenrod;
+}
