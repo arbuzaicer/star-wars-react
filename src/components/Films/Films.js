@@ -5,6 +5,7 @@ import DAL from './../../services/DAL'
 import Card from './../Card/Card';
 import Preloader from '../Preloader/Preloader';
 import Slider from 'react-slick';
+import {charactersImages} from '../../store/imgData'
 
 class Films extends Component {
 
@@ -18,10 +19,19 @@ class Films extends Component {
         }
     }
 
+    setCharacterImage(character) {
+        const imgData = charactersImages;
+        const defaultCharacter = imgData.filter(item=>item.name==='Default character');
+        const selectedImg = imgData.filter(item=>item.name===character.name);
+
+        character['imgSrc'] = selectedImg.length>0 ? selectedImg[0].src : defaultCharacter[0].src;
+    }
+
     cardRequest(arr) {
         arr.map(character => {
             DAL.getSingleCharacterInfo(character)
                 .then(data => {
+                    this.setCharacterImage(data);
                     this.setState({
                         charactersInfo: [
                             ...this.state.charactersInfo,
@@ -29,8 +39,9 @@ class Films extends Component {
                         ]
                     })
                 })
-        });
+        })
     }
+
 
     async getCharacters(el) {
         this.setState({
@@ -45,7 +56,7 @@ class Films extends Component {
                 })
             });
         this.cardRequest(this.state.characters);
-        console.log(this.state.charactersInfo)
+
     }
 
 
@@ -72,20 +83,15 @@ class Films extends Component {
 
                 {
                     this.state.uploadedData &&
-                        <div>
-                            <Slider {...settings}>
-                                {this.state.charactersInfo.map(item => {
-                                        return <Card key={item.created}
-                                                     name={item.name}
-                                                     birth_year = {item.birth_year}
-                                                     gender = {item.gender}
-                                                     height = {item.height}
-                                                     mass = {item.mass}
-                                        />
-                                    })
-                                }
-                            </Slider>
-                        </div>
+                    <div>
+                        <Slider {...settings}>
+                            {this.state.charactersInfo.map(item => {
+                                return <Card key={item.created} {...item}
+                                />
+                            })
+                            }
+                        </Slider>
+                    </div>
                 }
             </div>
         )

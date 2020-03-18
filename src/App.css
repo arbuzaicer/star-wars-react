@@ -15,12 +15,10 @@ body {
 /*Custom styles for slick-slider*/
 
 .slick-list {
-    width: 350px;
+    width: 1500px;
 }
 .slick-slider {
-    width: 80vw;
-    display: flex;
-    justify-content: center;
+    width: 50vw;
 }
 .slick-next, .slick-prev {
     transform: scale(2);
@@ -30,4 +28,7 @@ body {
     bottom: 20px;
     right: 20px;
     color: white;
+}
+.slick-slide .slick-active .slick-current {
+    margin: 0px 70px;
 }

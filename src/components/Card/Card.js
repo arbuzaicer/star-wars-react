@@ -4,10 +4,13 @@ import styles from './Card.module.css'
 const Card = (props) => {
     return (
         <div className={styles['character-card']}>
-            <div className={styles['characters-card_name']}>
-                {props.name}
+            <div className={styles['character-card__img']}>
+                <img className={styles['character-img']} src={props.imgSrc} alt=""/>
             </div>
             <div className={styles['characters-card_info']}>
+                <div className={styles['characters-card_name']}>
+                    {props.name}
+                </div>
                     <p>Рік народження: {props.birth_year}</p>
                     <p>Стать:
                         {(props.gender==='male') && <span>чоловіча</span> }
