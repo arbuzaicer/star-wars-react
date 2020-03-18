@@ -15,7 +15,8 @@ class Films extends Component {
             characters: null,
             charactersInfo: [],
             uploadedData: false,
-            isPreloaderOff: true
+            isPreloaderOff: true,
+            episode: null
         }
     }
 
@@ -51,6 +52,7 @@ class Films extends Component {
             .then(data => {
                 this.setState({
                     characters: data.characters,
+                    episode: data.episode_id,
                     uploadedData: true,
                     isPreloaderOff: true
                 })
@@ -76,14 +78,13 @@ class Films extends Component {
 
                 {
                     !this.state.uploadedData &&
-                    <div className={styles.films}>
                         <FilmForm getCharacters={this.getCharacters.bind(this)}/>
-                    </div>
                 }
 
                 {
                     this.state.uploadedData &&
                     <div>
+                        <p>Картки героїв із {this.state.episode} епізоду Зоряних Війн.</p>
                         <Slider {...settings}>
                             {this.state.charactersInfo.map(item => {
                                 return <Card key={item.created} {...item}

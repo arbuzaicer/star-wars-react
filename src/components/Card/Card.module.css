@@ -1,20 +1,20 @@
-.character-card {
+.item-card {
     height: 25em;
-    width: 15em;
+    width: 16em;
     border-radius: 10px;
     position: relative;
     margin: 10px 15em;
     background: rgba(0, 0, 0, 0.87);
     transform-style: preserve-3d;
-    transform: perspective(2000px);
+    transform: perspective(2000px) translateX(-25%);
     transition: 1s;
     box-shadow: inset 300px 0 50px rgba(0,0,0,0.5);
 }
 
-.characters-card_name {
+.item-card_name {
     font-size: 2em;
 }
-.character-card__img {
+.item-card__img {
     background: url("../../images/character-bg.jpeg") no-repeat;
     background-size: cover;
     border-radius: 10px;
@@ -26,7 +26,7 @@
     z-index: 1;
     transition: 1s;
 }
-.character-img {
+.item-img {
     border-radius: 10px;
     position: absolute;
     top: 0;
@@ -35,7 +35,7 @@
     height: 100%;
     object-fit: cover;
 }
-.character-card .characters-card_info {
+.item-card .item-card_info {
     position: absolute;
     top: 0;
     left: 0;
@@ -45,11 +45,11 @@
 
 /*Hover effects*/
 
-.character-card:hover .character-card__img {
+.item-card:hover .item-card__img {
     transform: rotateY(-135deg);
 }
 
-.character-card:hover {
+.item-card:hover {
     transform: perspective(2000px) rotate(-5deg);
     box-shadow: inset 20px 0 50px rgba(0,0,0,0.5);
 }

@@ -7,13 +7,23 @@ const connection = axios.create({
 const DAL = {
     getFilm(episode) {
         return connection.get(`films/${episode}`)
-            .then(response=>response.data)
+            .then(response => response.data)
     },
     getSingleCharacterInfo(url) {
         return axios.create({
             baseURL: url
         }).get()
-            .then(response=>response.data)
+            .then(response => response.data)
+    },
+    getDefaultPlanets() {
+        return connection.get(`planets`)
+            .then(response => response.data)
+    },
+    getSelectedPlanets(url) {
+        return axios.create({
+            baseURL: url
+        }).get()
+            .then(response => response.data);
     }
 };
 

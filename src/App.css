@@ -12,23 +12,35 @@ body {
     overflow: scroll;
 }
 
-/*Custom styles for slick-slider*/
-
-.slick-list {
-    width: 1500px;
-}
-.slick-slider {
-    width: 50vw;
-}
-.slick-next, .slick-prev {
-    transform: scale(2);
-}
 .developed {
     position: fixed;
     bottom: 20px;
     right: 20px;
     color: white;
 }
-.slick-slide .slick-active .slick-current {
-    margin: 0px 70px;
+/*Custom styles for slick-slider*/
+
+.slick-list {
+    width: 800px;
+}
+.slick-slider {
+    width: 40vw;
+}
+.slick-next, .slick-prev {
+    transform: scale(2);
+}
+.slick-slide {
+    height: 550px;
+}
+.slick-dots {
+    position: absolute;
+    top: -25px;
+    height: 2em;
+}
+.slick-dots li.slick-active button:before {
+    color: white;
+}
+.slick-dots li button::before {
+    transform: scale(2);
+    color: white;
 }

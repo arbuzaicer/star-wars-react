@@ -1,5 +1,6 @@
 .form__body {
     display: flex;
+    margin-top: -10em;
     flex-direction: column;
     width: 400px;
     background: rgba(0, 0, 0, 0.8);

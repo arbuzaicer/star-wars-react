@@ -9,7 +9,7 @@ const Home = ()=> {
                                            target="_blank">"Зоряні Війни"</a></h2>
             <div className={styles.description}>
                 <p>
-                    Даний додаток використовує <a href="https://swapi.co/">API SWAPI</a>, яка містить велику кількість
+                    Даний додаток використовує <a href="https://swapi.co/" target="_blank">API SWAPI</a>, яка містить велику кількість
                     інформації про пресонажів, планети, літаючі засоби та інші дані.
                 </p>
                 <p>

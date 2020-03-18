@@ -16,7 +16,7 @@ import C3PO from '../images/characters/c-3po.png'
 import Bossk from '../images/characters/bossk.png'
 import IG88 from '../images/characters/IG-88.png'
 
-export const charactersImages = [
+const charactersImages = [
     {
         src: defaultCharacter,
         name: "Default character"
@@ -87,3 +87,77 @@ export const charactersImages = [
         name: "Palpatine"
     }
 ];
+
+const planetsImages = [
+    {
+        src: defaultCharacter,
+        name: "Default character"
+    },
+    {
+        src: LandoCalrissian,
+        name: "Lando Calrissian"
+    },
+    {
+        src: LukeSkywalker,
+        name: "Luke Skywalker"
+    },
+    {
+        src: C3PO,
+        name: "C-3PO"
+    },
+    {
+        src: R2D2,
+        name: "R2-D2"
+    },
+    {
+        src: DarthVader,
+        name: "Darth Vader"
+    },
+    {
+        src: Leia,
+        name: "Leia Organa"
+    },
+    {
+        src: ObiWanKenobi,
+        name: "Obi-Wan Kenobi"
+    },
+    {
+        src: Chewbaca,
+        name: "Chewbacca"
+    },
+    {
+        src: WedgeAntilles,
+        name: "Wedge Antilles"
+    },
+    {
+        src: HanSolo,
+        name: "Han Solo"
+    },
+    {
+        src: Lobbot,
+        name: "Lobot"
+    },
+    {
+        src: Bossk,
+        name: "Bossk"
+    },
+    {
+        src: IG88,
+        name: "IG-88"
+    },
+    {
+        src: BobaFett,
+        name: "Boba Fett"
+    },
+
+    {
+        src: Yoda,
+        name: "Yoda"
+    },
+    {
+        src: Palpatine,
+        name: "Palpatine"
+    }
+];
+
+export {charactersImages, planetsImages}
