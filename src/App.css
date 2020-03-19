@@ -77,15 +77,12 @@ body {
     }
 
     .slick-slider {
-        width: 85vw;
+        width: 80vw;
         margin-left: 27px;
     }
 
     .slick-current {
         transform: translateX(-50%);
-    }
-    .slick-cloned {
-        transform: translateX(50%);
     }
 
     .developed {
