@@ -25,6 +25,9 @@
 }
 
 @media(max-width: 480px) {
+    .home-container {
+        height: 70vh;
+    }
     .home-container a {
         color: #ff5123;
         transition: 0.5s;
