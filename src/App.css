@@ -12,6 +12,7 @@ body {
     overflow: scroll;
 }
 .menu-respons {
+    z-index: 999;
     top: 0;
     left: 0;
     width: 100vw;
@@ -56,9 +57,21 @@ body {
 /*Media queries*/
 
 @media (max-width: 480px) {
+    body {
+        background: url("./images/body-bg-responsive.jpg") no-repeat;
+        background-size: cover;
+    }
+    .slick-slider {
+        width: 85vw;
+        margin-left: 27px;
+    }
+ .slick-current {
+     transform: translateX(-18%);
+ }
     .developed {
         font-size: 0.5em;
-        bottom: 5px;
-        right: 5px;
+        height: 2em;
+        top: 70px;
+        left: 10px;
     }
 }

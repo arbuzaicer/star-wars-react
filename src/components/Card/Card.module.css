@@ -53,3 +53,10 @@
     transform: perspective(2000px) rotate(-5deg);
     box-shadow: inset 20px 0 50px rgba(0,0,0,0.5);
 }
+
+@media (max-width: 480px) {
+
+    .item-card:hover {
+        transform: scale(0.7) perspective(2000px) rotate(-5deg);
+    }
+}

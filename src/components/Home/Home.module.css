@@ -26,7 +26,7 @@
 
 @media(max-width: 480px) {
     .home-container {
-        height: 70vh;
+        height: 100vh;
     }
     .home-container a {
         color: #ff5123;

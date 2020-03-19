@@ -36,7 +36,26 @@
 .button:hover {
     background: #707070;
 }
+
 .header {
     margin-bottom: 2em;
 }
 
+@media (max-width: 480px) {
+    .planets {
+        height: 100vh;
+    }
+    .buttons-section {
+        bottom: 0;
+    }
+    .button {
+        height: 5em;
+    }
+    #prev {
+        bottom: 10px;
+    }
+
+    #next {
+        bottom: 10px;
+    }
+}
