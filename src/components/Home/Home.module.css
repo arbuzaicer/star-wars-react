@@ -23,3 +23,10 @@
     font-size: 2em;
     align-items: center;
 }
+
+@media(max-width: 480px) {
+    .home-container a {
+        color: #ff5123;
+        transition: 0.5s;
+    }
+}

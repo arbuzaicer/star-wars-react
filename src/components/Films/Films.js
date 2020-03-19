@@ -5,7 +5,7 @@ import DAL from './../../services/DAL'
 import Card from './../Card/Card';
 import Preloader from '../Preloader/Preloader';
 import Slider from 'react-slick';
-import {charactersImages} from '../../store/imgData'
+import {charactersImages} from '../../store/imgFilmsData'
 
 class Films extends Component {
 
@@ -16,7 +16,8 @@ class Films extends Component {
             charactersInfo: [],
             uploadedData: false,
             isPreloaderOff: true,
-            episode: null
+            episode: null,
+            episodeTitle:null
         }
     }
 
@@ -54,7 +55,8 @@ class Films extends Component {
                     characters: data.characters,
                     episode: data.episode_id,
                     uploadedData: true,
-                    isPreloaderOff: true
+                    isPreloaderOff: true,
+                    episodeTitle: data.title
                 })
             });
         this.cardRequest(this.state.characters);
@@ -84,7 +86,10 @@ class Films extends Component {
                 {
                     this.state.uploadedData &&
                     <div>
-                        <p>Картки героїв із {this.state.episode} епізоду Зоряних Війн.</p>
+                        <div className={styles['episode-info']}>
+                            <p>Картки героїв із {this.state.episode} епізоду Зоряних Війн.</p>
+                            <h2 className={styles['episode-title']}>{this.state.episodeTitle}</h2>
+                        </div>
                         <Slider {...settings}>
                             {this.state.charactersInfo.map(item => {
                                 return <Card key={item.created} {...item}

@@ -7,3 +7,14 @@
     align-items: center;
     justify-content: center;
 }
+.episode-info {
+    text-align: center;
+}
+.episode-info>p {
+    font-size: 1.5em;
+}
+.episode-title {
+    font-size: 3em;
+    color: #389c8a;
+    text-shadow: 3px 5px 7px black;
+}
