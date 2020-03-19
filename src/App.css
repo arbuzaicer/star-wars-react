@@ -84,6 +84,9 @@ body {
     .slick-current {
         transform: translateX(-50%);
     }
+    .slick-cloned {
+        transform: translateX(50%);
+    }
 
     .developed {
         font-size: 0.5em;
