@@ -155,7 +155,7 @@ export const planetsImages = [
     },
     {
         src: Iktoch,
-        name: "Iktoch"
+        name: "Iktotch"
     },
     {
         src: Iridonia,
@@ -195,7 +195,7 @@ export const planetsImages = [
     },
     {
         src: Muunilist,
-        name: "Muunilist"
+        name: "Muunilinst"
     },
     {
         src: Mygeeto,
