@@ -84,7 +84,10 @@ body {
     .slick-current {
         transform: translateX(-50%);
     }
-
+    .slick-dots {
+        width: 100vw;
+        transform: translateX(-18%);
+    }
     .developed {
         font-size: 0.5em;
         height: 2em;

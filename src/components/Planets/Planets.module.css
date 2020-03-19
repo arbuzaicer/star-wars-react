@@ -44,9 +44,10 @@
 @media (max-width: 480px) {
     .planets {
         height: 100vh;
+        margin-top: 1em;
     }
     .buttons-section {
-        top: 77%;
+        top: 80%;
         height: 2em;
     }
     .button {
