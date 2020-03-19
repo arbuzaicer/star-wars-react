@@ -46,16 +46,10 @@
         height: 100vh;
     }
     .buttons-section {
-        bottom: 0;
+        top: 80%;
+        height: 2em;
     }
     .button {
         height: 5em;
-    }
-    #prev {
-        bottom: 10px;
-    }
-
-    #next {
-        bottom: 10px;
     }
 }
