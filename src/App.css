@@ -82,7 +82,7 @@ body {
     }
 
     .slick-current {
-        transform: translateX(-35%);
+        transform: translateX(-50%);
     }
 
     .developed {
