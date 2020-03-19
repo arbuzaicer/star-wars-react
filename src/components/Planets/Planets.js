@@ -4,6 +4,7 @@ import styles from './Planets.module.css'
 import Preloader from "../Preloader/Preloader";
 import Card from "../Card/Card";
 import Slider from 'react-slick';
+import {planetsImages} from "../../store/imgPlanetsData";
 
 class Planets extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Planets extends Component {
     componentDidMount() {
         DAL.getDefaultPlanets()
             .then(data => {
+                const planets = this.setPlanetImage(data.results);
                 this.setState({
                     next: data.next,
                     previous: data.previous,
@@ -30,30 +32,27 @@ class Planets extends Component {
             });
     }
 
-    getNextPlanetsList() {
+    setPlanetImage(planet) {
+        const imgData = planetsImages;
+        const defaultPlanet = planetsImages.filter(planet => planet.name === "Default");
+        const selected = planet.forEach(item => {
+            const currentImg = imgData.filter(sin => {
+                return sin.name === item.name
+            });
+            item['imgSrc'] = currentImg.length > 0 ? currentImg[0].src : defaultPlanet[0].src;
+        })
+
+    }
+
+    getPlanetsList() {
         this.setState({
             isPreloaderOff: false,
             uploadedData: false
         });
         DAL.getSelectedPlanets(this.state.next)
             .then(data => {
-                this.setState({
-                    next: data.next,
-                    previous: data.previous,
-                    planets: data.results,
-                    isPreloaderOff: true,
-                    uploadedData: true
-                })
-            })
-    }
-
-    getPrevPlanetsList() {
-        this.setState({
-            isPreloaderOff: false,
-            uploadedData: false
-        });
-        DAL.getSelectedPlanets(this.state.previous)
-            .then(data => {
+                const planets = this.setPlanetImage(data.results);
+                this.setPlanetImage(data.results);
                 this.setState({
                     next: data.next,
                     previous: data.previous,
@@ -84,7 +83,7 @@ class Planets extends Component {
                             <Slider {...settings}>
                                 {
                                     this.state.planets.map(item => {
-                                        return <Card planets={'Planets'} key={item.created} {...item}/>
+                                        return <Card key={item.created} {...item}/>
                                     })
                                 }
                             </Slider>
@@ -94,14 +93,14 @@ class Planets extends Component {
                 }
 
                 <div className={styles['buttons-section']}>
-                    {this.state.previous && <button id={styles.prev} onClick={() => this.getPrevPlanetsList()}
+                    {this.state.previous && <button id={styles.prev} onClick={() => this.getPlanetsList()}
                                                     className={styles.button}>Prev</button>}
-                    {this.state.next && <button id={styles.next} onClick={() => this.getNextPlanetsList()}
+                    {this.state.next && <button id={styles.next} onClick={() => this.getPlanetsList()}
                                                 className={styles.button}>Next</button>}
                 </div>
             </>
         )
     }
-};
+}
 
 export default Planets;
