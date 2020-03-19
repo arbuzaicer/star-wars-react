@@ -17,7 +17,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 110vh;
     position: absolute;
     background: linear-gradient(75deg, #0c1829, #171a2a, #0f013f);
 }
