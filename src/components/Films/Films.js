@@ -1,107 +1,99 @@
-import React, {Component} from 'react';
-import FilmForm from './Films-form/Films-from';
-import styles from './Films.module.css'
-import DAL from './../../services/DAL'
-import Card from './../Card/Card';
-import Preloader from '../Preloader/Preloader';
-import Slider from 'react-slick';
-import {charactersImages} from '../../store/imgFilmsData'
+import React, { Component } from "react";
+import Slider from "react-slick";
+import charactersData from "./../../data/filmsData";
+import DAL from "./../../services/DAL";
+import Card from "./../Card/Card";
+import Preloader from "./../Preloader/Preloader";
+import FilmForm from "./Films-form/Films-from";
+import "./Films.css";
 
 class Films extends Component {
+  static sliderSettings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            characters: null,
-            charactersInfo: [],
-            uploadedData: false,
-            isPreloaderOff: true,
-            episode: null,
-            episodeTitle:null
-        }
-    }
+  state = {
+    characters: null,
+    charactersInfo: [],
+    uploadedData: false,
+    isPreloaderOff: true,
+    transformCharacters: [],
+    episode: null,
+    episodeTitle: null,
+  };
 
-    setCharacterImage(character) {
-        const imgData = charactersImages;
-        const defaultCharacter = imgData.filter(item=>item.name==='Default character');
-        const selectedImg = imgData.filter(item=>item.name===character.name);
+  setCharacterImage = (character) => {
+    const imgData = charactersData;
+    const defaultCharacter = imgData.find(
+      (item) => item.name === "Default character"
+    );
+    const selectedImg = imgData.find((item) => item.name === character.name);
+    character["imgSrc"] = selectedImg.src || defaultCharacter.src;
+  };
 
-        character['imgSrc'] = selectedImg.length>0 ? selectedImg[0].src : defaultCharacter[0].src;
-    }
+  cardRequest = (characters) => {
+    characters.forEach(async (character) => {
+      const singleCharacter = await DAL.getSingleCharacterInfo(character);
+      this.setState({
+        charactersInfo: [...this.state.charactersInfo, singleCharacter],
+      });
+      this.addCharactersData(singleCharacter);
+    });
+  };
 
-    cardRequest(arr) {
-        arr.map(character => {
-            DAL.getSingleCharacterInfo(character)
-                .then(data => {
-                    this.setCharacterImage(data);
-                    this.setState({
-                        charactersInfo: [
-                            ...this.state.charactersInfo,
-                            data
-                        ]
-                    })
-                })
-        })
-    }
+  addCharactersData = (character) => {
+    const currentCharacter = character;
+    this.setCharacterImage(currentCharacter);
+    this.setState({
+      transformCharacters: [
+        ...this.state.transformCharacters,
+        currentCharacter,
+      ],
+    });
+  };
 
+  getCharacters = async (el) => {
+    this.setState({
+      isPreloaderOff: false,
+    });
+    const response = await DAL.getFilm(el);
+    this.setState({
+      characters: response.characters,
+      episode: response.episode_id,
+      uploadedData: true,
+      isPreloaderOff: true,
+      episodeTitle: response.title,
+    });
+    this.cardRequest(this.state.characters);
+  };
 
-    async getCharacters(el) {
-        this.setState({
-            isPreloaderOff: false
-        });
-        await DAL.getFilm(el)
-            .then(data => {
-                this.setState({
-                    characters: data.characters,
-                    episode: data.episode_id,
-                    uploadedData: true,
-                    isPreloaderOff: true,
-                    episodeTitle: data.title
-                })
-            });
-        this.cardRequest(this.state.characters);
+  render() {
+    const charactersCards = this.state.charactersInfo.map((item) => {
+      return <Card key={item.created} {...item} />;
+    });
 
-    }
+    return (
+      <div className="films">
+        {!this.state.isPreloaderOff && <Preloader />}
 
+        {!this.state.uploadedData && (
+          <FilmForm getCharacters={this.getCharacters} />
+        )}
 
-    render() {
-        const settings = {
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        };
-
-        return (
-            <div className={styles.films}>
-                {
-                    !this.state.isPreloaderOff &&
-                    <Preloader/>
-                }
-
-                {
-                    !this.state.uploadedData &&
-                        <FilmForm getCharacters={this.getCharacters.bind(this)}/>
-                }
-
-                {
-                    this.state.uploadedData &&
-                    <div>
-                        <div className={styles['episode-info']}>
-                            <p>Картки героїв із {this.state.episode} епізоду Зоряних Війн.</p>
-                            <h2 className={styles['episode-title']}>{this.state.episodeTitle}</h2>
-                        </div>
-                        <Slider {...settings}>
-                            {this.state.charactersInfo.map(item => {
-                                return <Card key={item.created} {...item}
-                                />
-                            })
-                            }
-                        </Slider>
-                    </div>
-                }
+        {this.state.uploadedData && (
+          <div>
+            <div className="episode-info">
+              <p>Картки героїв із {this.state.episode} епізоду Зоряних Війн.</p>
+              <h2 className="episode-title">{this.state.episodeTitle}</h2>
             </div>
-        )
-    }
-};
+            <Slider {...this.sliderSettings}>{charactersCards}</Slider>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
 
 export default Films;

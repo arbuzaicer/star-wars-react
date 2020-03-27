@@ -1,0 +1,61 @@
+.item-card {
+  height: 25em;
+  width: 16em;
+  border-radius: 10px;
+  position: relative;
+  margin: 10px 15em;
+  background: rgba(0, 0, 0, 0.87);
+  transform-style: preserve-3d;
+  transform: perspective(2000px) translateX(-25%);
+  transition: 1s;
+  box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.item-card_name {
+  font-size: 2em;
+}
+.item-card__img {
+  background: url("../../assets/character-bg.jpeg") no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  transform-origin: left;
+  z-index: 1;
+  transition: 1s;
+}
+.item-img {
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.item-card .item-card_info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/*Hover effects*/
+
+.item-card:hover .item-card__img {
+  transform: rotateY(-135deg);
+}
+
+.item-card:hover {
+  transform: perspective(2000px) rotate(-5deg);
+  box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 480px) {
+  .item-card:hover {
+    transform: scale(0.7) perspective(2000px) rotate(-5deg);
+  }
+}

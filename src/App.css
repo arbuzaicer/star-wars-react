@@ -1,97 +1,88 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Russo One', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Russo One", sans-serif;
 }
 
 body {
-    background: url("./images/body-bg.jpg") no-repeat;
-    background-size: cover;
-    display: flex;
-    height: 100%;
-    overflow: scroll;
-}
-
-.menu-respons {
-    z-index: 999;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 110vh;
-    position: absolute;
-    background: linear-gradient(75deg, #0c1829, #171a2a, #0f013f);
+  background: url("assets/body-bg.jpg") no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 100%;
+  overflow: scroll;
 }
 
 .developed {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    color: white;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
 }
 
 /*Custom styles for slick-slider*/
 
 .slick-list {
-    width: 800px;
+  width: 800px;
 }
 
 .slick-slider {
-    width: 40vw;
+  width: 40vw;
 }
 
-.slick-next, .slick-prev {
-    transform: scale(2);
+.slick-next,
+.slick-prev {
+  transform: scale(2);
 }
 
 .slick-slide {
-    height: 550px;
+  height: 550px;
 }
 
 .slick-dots {
-    position: absolute;
-    top: -25px;
-    height: 2em;
+  position: absolute;
+  top: -25px;
+  height: 2em;
 }
 
 .slick-dots li.slick-active button:before {
-    color: white;
+  color: white;
 }
 
 .slick-dots li button::before {
-    transform: scale(2);
-    color: white;
+  transform: scale(2);
+  color: white;
 }
 
 /*Media queries*/
 
 @media (max-width: 480px) {
-    body {
-        background: url("./images/body-bg-responsive.jpg") no-repeat;
-        background-size: cover;
-    }
-    .slick-list {
-         width: 85vw;
-     }
-    .slick-slide {
-        transform: translateX(-50%);
-    }
+  body {
+    background: url("assets/body-bg-responsive.jpg") no-repeat;
+    background-size: cover;
+  }
+  .slick-list {
+    width: 85vw;
+  }
+  .slick-slide {
+    transform: translateX(-50%);
+  }
 
-    .slick-slider {
-        width: 80vw;
-        margin-left: 27px;
-    }
+  .slick-slider {
+    width: 80vw;
+    margin-left: 27px;
+  }
 
-    .slick-current {
-        transform: translateX(-50%);
-    }
-    .slick-dots {
-        width: 100vw;
-        transform: translateX(-18%);
-    }
-    .developed {
-        font-size: 0.5em;
-        height: 2em;
-        top: 70px;
-        left: 10px;
-    }
+  .slick-current {
+    transform: translateX(-50%);
+  }
+  .slick-dots {
+    width: 100vw;
+    transform: translateX(-18%);
+  }
+  .developed {
+    font-size: 0.5em;
+    height: 2em;
+    top: 70px;
+    left: 10px;
+  }
 }

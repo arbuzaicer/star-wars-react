@@ -1,24 +1,31 @@
 import React from "react";
-import styles from './Films-form.module.css'
+import "./Films-form.css";
 
-const FilmForm = (props) => {
-        return (
-            <div id="form" className={styles.form__body}>
-                <h2 className={styles.form__header}>Пошук персонажів по епізоду</h2>
-                <div className={styles.form}>
-                    <div className={styles['input-box']}>
-                        <input id='someID' className={styles.form__input} type="number" required=" " min={0}
-                               max={7}/>
-                        <label>Номер епізоду (1-7)</label>
-                    </div>
-                </div>
-                <button className={styles.submit} onClick={() => {
-                    props.getCharacters(document.getElementById('someID').value);
-                }}>Отримати інформацію
-                </button>
-            </div>
-        )
-
-};
+const FilmForm = ({ getCharacters }) => (
+  <div id="form" className="form__body">
+    <h2 className="form__header">Пошук персонажів по епізоду</h2>
+    <div className="form">
+      <div className="input-box">
+        <input
+          id="someID"
+          className="form__input"
+          type="number"
+          required=" "
+          min={0}
+          max={7}
+        />
+        <label>Номер епізоду (1-7)</label>
+      </div>
+    </div>
+    <button
+      className="submit"
+      onClick={() => {
+        getCharacters(document.getElementById("someID").value);
+      }}
+    >
+      Отримати інформацію
+    </button>
+  </div>
+);
 
 export default FilmForm;

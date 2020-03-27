@@ -1,106 +1,114 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import Slider from "react-slick";
 import DAL from "../../services/DAL";
-import styles from './Planets.module.css'
+import planetsData from "../../data/planetsData";
 import Preloader from "../Preloader/Preloader";
 import Card from "../Card/Card";
-import Slider from 'react-slick';
-import {planetsImages} from "../../store/imgPlanetsData";
+import "./Planets.css";
 
 class Planets extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            next: null,
-            previous: null,
-            planets: [],
-            isPreloaderOff: false,
-            uploadedData: false
-        }
-    }
+  state = {
+    next: null,
+    previous: null,
+    planets: [],
+    isPreloaderOff: false,
+    uploadedData: false,
+  };
 
-    componentDidMount() {
-        DAL.getDefaultPlanets()
-            .then(data => {
-                const planets = this.setPlanetImage(data.results);
-                this.setState({
-                    next: data.next,
-                    previous: data.previous,
-                    planets: data.results,
-                    isPreloaderOff: true,
-                    uploadedData: true
-                })
-            });
-    }
+  componentDidMount = async () => {
+    const planets = await DAL.getDefaultPlanets();
+    const transformedPlanets = await this.setPlanetImage(planets.results);
+    this.setState({
+      next: planets.next,
+      previous: planets.previous,
+      planets: transformedPlanets,
+      isPreloaderOff: true,
+      uploadedData: true,
+    });
+  };
 
-    setPlanetImage(planet) {
-        const imgData = planetsImages;
-        const defaultPlanet = planetsImages.filter(planet => planet.name === "Default");
-        const selected = planet.forEach(item => {
-            const currentImg = imgData.filter(sin => {
-                return sin.name === item.name
-            });
-            item['imgSrc'] = currentImg.length > 0 ? currentImg[0].src : defaultPlanet[0].src;
-        })
+  setPlanetImage = async (planets) => {
+    const planetsTemp = [...planets];
+    const defaultPlanet = planetsData.find(
+      (planet) => planet.name === "Default"
+    );
 
-    }
+    planetsTemp.forEach((item) => {
+      const currentImg = planetsData.find((sin) => {
+        return sin.name === item.name;
+      });
+      item["imgSrc"] = currentImg ? currentImg.src : defaultPlanet.src;
+    });
+    return planetsTemp;
+  };
 
-    getPlanetsList() {
-        this.setState({
-            isPreloaderOff: false,
-            uploadedData: false
-        });
-        DAL.getSelectedPlanets(this.state.next)
-            .then(data => {
-                const planets = this.setPlanetImage(data.results);
-                this.setPlanetImage(data.results);
-                this.setState({
-                    next: data.next,
-                    previous: data.previous,
-                    planets: data.results,
-                    isPreloaderOff: true,
-                    uploadedData: true
-                })
-            })
-    }
+  getPlanetsList = async (list) => {
+    this.setState({
+      isPreloaderOff: false,
+      uploadedData: false,
+    });
+    const planetList = await DAL.getSelectedPlanets(list);
+    const planets = await this.setPlanetImage(planetList.results);
+    this.setState({
+      next: planetList.next,
+      previous: planetList.previous,
+      planets: planets,
+      isPreloaderOff: true,
+      uploadedData: true,
+    });
+  };
 
-    render() {
-        const settings = {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            dots: true
-        };
-        return (
-            <>
-                {!this.state.isPreloaderOff && <Preloader/>}
+  render() {
+    const sliderSettings = {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: true,
+    };
 
-                {
-                    this.state.uploadedData &&
-                    <div>
-                        <div className={styles.planets}>
-                            <p className={styles.header}>Завантажено {this.state.planets.length} планет. Можна гортати
-                                картку мишкою або натиснути на кнопки нижче.</p>
-                            <Slider {...settings}>
-                                {
-                                    this.state.planets.map(item => {
-                                        return <Card key={item.created} {...item}/>
-                                    })
-                                }
-                            </Slider>
-                        </div>
-                    </div>
+    return (
+      <React.Fragment>
+        {!this.state.isPreloaderOff && <Preloader />}
 
-                }
+        {this.state.uploadedData && (
+          <div>
+            <div className="planets">
+              <p className="header">
+                Завантажено {this.state.planets.length} планет. Можна гортати
+                картку мишкою або натиснути на кнопки нижче.
+              </p>
+              <Slider {...sliderSettings}>
+                {this.state.planets.map((item) => {
+                  return <Card key={item.created} {...item} />;
+                })}
+              </Slider>
+            </div>
+          </div>
+        )}
 
-                <div className={styles['buttons-section']}>
-                    {this.state.previous && <button id={styles.prev} onClick={() => this.getPlanetsList()}
-                                                    className={styles.button}>Prev</button>}
-                    {this.state.next && <button id={styles.next} onClick={() => this.getPlanetsList()}
-                                                className={styles.button}>Next</button>}
-                </div>
-            </>
-        )
-    }
+        <div className="buttons-section">
+          {this.state.previous && (
+            <button
+              id="prev"
+              onClick={() => this.getPlanetsList(this.state.previous)}
+              className="button"
+            >
+              Prev
+            </button>
+          )}
+          {this.state.next && (
+            <button
+              id="next"
+              onClick={() => this.getPlanetsList(this.state.next)}
+              className="button"
+            >
+              Next
+            </button>
+          )}
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
 export default Planets;

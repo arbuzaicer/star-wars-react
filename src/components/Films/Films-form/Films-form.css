@@ -1,0 +1,68 @@
+.form__body {
+  display: flex;
+  margin-top: -10em;
+  flex-direction: column;
+  width: 400px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: auto;
+  padding: 20px 0;
+}
+.form input {
+  display: block;
+}
+.form__header {
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 0 0 30px;
+}
+
+.input-box {
+  position: relative;
+}
+
+.input-box input {
+  padding: 10px 0;
+  width: 100%;
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 1.2em;
+  outline: none;
+  border-bottom: 3px solid rgb(94, 160, 207);
+  margin-bottom: 2em;
+}
+
+.input-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(50%);
+  pointer-events: none;
+  transition: 0.5s;
+}
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: -25px;
+  font-size: 0.8em;
+  color: rgb(94, 160, 207);
+}
+.submit {
+  height: 3em;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  transition: 0.8s;
+}
+.submit:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
