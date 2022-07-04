@@ -5,11 +5,12 @@
 }
 
 body {
-  background: url("assets/body-bg.jpg") no-repeat;
-  background-size: cover;
+  height: 100vh;
   display: flex;
-  height: 100%;
   overflow: scroll;
+  background: url("assets/body-bg.jpg") no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
 }
 
 .developed {

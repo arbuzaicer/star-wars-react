@@ -1,7 +1,7 @@
 import * as axios from "axios";
 
 const api = axios.create({
-  baseURL: `https://swapi.co/api/`,
+  baseURL: `https://swapi.dev/api/`,
 });
 
 const DAL = {

@@ -7,8 +7,9 @@ const Home = () => (
     <h2>
       Привіт - це додаток про{" "}
       <a
-        href="https://uk.wikipedia.org/wiki/%D0%97%D0%BE%D1%80%D1%8F%D0%BD%D1%96_%D0%B2%D1%96%D0%B9%D0%BD%D0%B8"
         target="_blank"
+        rel="noopener noreferrer"
+        href="https://uk.wikipedia.org/wiki/%D0%97%D0%BE%D1%80%D1%8F%D0%BD%D1%96_%D0%B2%D1%96%D0%B9%D0%BD%D0%B8"
       >
         "Зоряні Війни"
       </a>
@@ -16,7 +17,7 @@ const Home = () => (
     <div className="description">
       <p>
         Даний додаток використовує{" "}
-        <a href="https://swapi.co/" target="_blank">
+        <a href="https://swapi.co/" target="_blank" rel="noopener noreferrer">
           API SWAPI
         </a>
         , яка містить велику кількість інформації про пресонажів, планети,
