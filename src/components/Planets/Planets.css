@@ -1,6 +1,6 @@
 .planets {
   width: 100vw;
-  height: calc(100vh - 2em);
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

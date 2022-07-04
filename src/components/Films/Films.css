@@ -1,7 +1,7 @@
 .films {
   color: white;
   display: flex;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 300px);
   margin-top: 5em;
   width: 100vw;
   align-items: center;
